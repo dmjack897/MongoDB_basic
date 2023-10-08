@@ -57,3 +57,13 @@ db.test.deleteMany({});
 db.test.updateOne({name:"sim"},{$set:{name:"Sim"}})
 db.test.updateMany({age:22},{$set:{name:"Sim"}});
 ```
+테스트용 Collection 작성
+```
+for(i = 0; i<20000; i++) {
+    db.test.insertOne({num: i});
+    }
+```
+Collection내 데이터 개수 확인
+```
+db.test.count()
+```

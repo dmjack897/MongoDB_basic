@@ -118,4 +118,3 @@ db.test.dropIndex({num:1})
 ```
 db.test.dropIndex("ix_num")
 ```
-- 

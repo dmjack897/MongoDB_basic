@@ -79,8 +79,8 @@ db.test.count()
 |$in|비교 값 배열 안에 속하는 값|
 |$nin|비교 값 배열 안에 속하지 않는 값|
 ```
-db.numbers.find({num: {"$eq":1995}})
-db.numbers.find({num: {"$gte": 12434}})
+db.test.find({num: {"$eq":1995}})
+db.test.find({num: {"$gte": 12434}})
 ```
 논리연산자
 |연산자|설명|
@@ -90,5 +90,32 @@ db.numbers.find({num: {"$gte": 12434}})
 |$not|해당 조건이 맞지 않는 경우와 해당 필드가 없는 경우를 찾음|
 |$nor|여러 개의 조건을 모두 만족 하지 않는 도큐먼트를 찾음|
 ```
-db.numbers.find({"$or": [{num:5},{num:11}]});
+db.test.find({"$or": [{num:5},{num:11}]});
 ```
+index 생성
+- createindex()
+- num키에 대해서 인덱스를 생성하며 오름차순으로 정렬합니다.(-1은 내림차순)
+- 인덱스 이름은 ix_num으로 설정합니다.
+```
+db.test.createIndex({num: 1},{name:"idx_num"})
+```
+index 확인
+- getindexes()
+```
+db.test.getIndexes()
+```
+복합index
+```
+db.test.createIndex( { num: 1 , sex:"man" }, {name:"idx_person"} )
+```
+index 삭제
+- index를 삭제햐는 방법에는 2가지가 있습니다.
+- 방법1 : 인덱스에 해당하는 키를 입력
+```
+db.test.dropIndex({num:1})
+```
+- 방법2 : 인덱스명을 입력
+```
+db.test.dropIndex("ix_num")
+```
+- 
